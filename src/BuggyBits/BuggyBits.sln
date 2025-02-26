@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuggyBits", "BuggyBits.csproj", "{2174520E-EF91-4667-B741-B4A9DDF65A0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2174520E-EF91-4667-B741-B4A9DDF65A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2174520E-EF91-4667-B741-B4A9DDF65A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2174520E-EF91-4667-B741-B4A9DDF65A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2174520E-EF91-4667-B741-B4A9DDF65A0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9FFB0E3-2B30-4E21-A7EC-975FAB46C776}
+	EndGlobalSection
+EndGlobal

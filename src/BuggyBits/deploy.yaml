@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buggybits-deployment
+  labels:
+    app: buggybits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: buggybits
+  template:
+    metadata:
+      labels:
+        app: buggybits
+        color: yellow
+    spec:
+      containers:
+      - name: buggybits
+        image: akstroubleshooting26022512b.azurecr.io/buggybits:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "DEV"
+        - name: ASPNETCORE_URLS
+          value: "http://+:8080"
+        - name: DOTNET_DbgEnableMiniDump
+          value: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buggybits-service
+  labels:
+    app: buggybits
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http-port
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: buggybits

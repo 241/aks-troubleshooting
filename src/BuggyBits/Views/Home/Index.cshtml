@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var dbgEnableMiniDump = Environment.GetEnvironmentVariable("DOTNET_DbgEnableMiniDump");
+    var createDumpDiagnostics = Environment.GetEnvironmentVariable("DOTNET_CreateDumpDiagnostics");
+    var dbgMiniDumpType = Environment.GetEnvironmentVariable("DOTNET_DbgMiniDumpType");
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Buggy Bits</h1>
+    <p>This is your one stop shop for very buggy bits</p>
+    <p>The purpose of this site is tho show some examples of code behaving badly in an ASP.Net process so that you can practice your debugging skills.</p>
+    <p>Browsing around this site will cause the process to hang, use lots of memory or crash.</p>
+    @if (!string.IsNullOrEmpty(environment))
+    {
+        <p>Current Environment: @environment</p>
+    }
+    @if (!string.IsNullOrEmpty(dbgEnableMiniDump))
+    {
+        <p>Crash auto dump collection is activated.</p>
+    }
+    @if (!string.IsNullOrEmpty(createDumpDiagnostics))
+    {
+        <p>Create Dump Diagnostics is enabled.</p>
+    }
+    @if (!string.IsNullOrEmpty(dbgMiniDumpType))
+    {
+        <p>Mini Dump Type: @dbgMiniDumpType</p>
+    }
+</div>
