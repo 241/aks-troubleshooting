@@ -1,0 +1,8 @@
+title: AKS .NET Troubleshooting
+description: Troubleshooting guide for AKS .NET applications
+theme: just-the-docs
+
+url: https://241.github.io/aks-troubleshooting/
+
+aux_links:
+  Template Repository: https://github.com/241/aks-troubleshooting
