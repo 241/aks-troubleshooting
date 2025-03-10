@@ -5,7 +5,7 @@ export default function Home() {
   const history = useHistory();
 
   useEffect(() => {
-    history.push('/docs/index');
+    history.push('/aks-troubleshooting/docs/index');
   }, [history]);
 
   return null;
