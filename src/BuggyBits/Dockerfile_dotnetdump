@@ -2,7 +2,7 @@
 
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-#USER $APP_UID
+USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 
@@ -16,6 +16,8 @@ RUN dotnet restore "./BuggyBits.csproj"
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "./BuggyBits.csproj" -c $BUILD_CONFIGURATION -o /app/build
+# Install dotnet-dump as a global tool
+RUN dotnet tool install -g dotnet-dump
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
@@ -26,4 +28,11 @@ RUN dotnet publish "./BuggyBits.csproj" -c $BUILD_CONFIGURATION -o /app/publish 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=publish /root/.dotnet/tools /usr/local/bin
+
+# Install procps package
+USER root
+RUN apt-get update && apt-get install -y procps
+
+
 ENTRYPOINT ["dotnet", "BuggyBits.dll"]

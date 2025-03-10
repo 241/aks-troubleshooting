@@ -1,3 +1,16 @@
+---
+title: 'Automatic Crash dumps'
+---
+
+## Scenario
+
+In this step, you will learn how to collect crash dumps from a .NET Core application running in Azure Kubernetes Service (AKS). You will configure the application to generate crash dumps automatically whenever it crashes.
+
+When a crash occurs, the application will generate a crash dump at the specified path. However, each crash will cause the application to restart, resulting in the loss of the dump data. To prevent this, you can mount an Azure disk to store the crash dump data. By doing so, the crash dump data will be persisted even after the application restarts, ensuring that you can analyze the crash dumps later.
+
+In the yaml file below, you will find the configuration to deploy the application, create a persistent volume claim, and mount the Azure disk to store the crash dump data.
+
+```yaml title="deploy.yaml"
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -55,7 +68,7 @@ spec:
         - name: DOTNET_DbgMiniDumpType
           value: "4"
         - name: DOTNET_DbgMiniDumpName
-          value: "/mnt/azure/crashdump_%h_%p_%t.dmp"
+          value: "/mnt/azure/crashdump_%h_<pid>_%t.dmp"
         volumeMounts:
           - mountPath: "/mnt/azure"
             name: azure-disk-storage
@@ -79,3 +92,5 @@ spec:
     protocol: TCP
   selector:
     app: buggybits
+
+```
