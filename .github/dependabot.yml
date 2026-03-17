@@ -1,8 +1,16 @@
 version: 2
 updates:
-  - package-ecosystem: bundler
+  - package-ecosystem: npm
+    directory: /docs-docusaurus
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: nuget
+    directory: /src/BuggyBits
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
-    allow:
-      - dependency-type: direct
+      interval: weekly
